@@ -25,10 +25,6 @@ function Song() {
     })()
   }, [id])
 
-  useEffect(() => {
-    console.log(song)
-  }, [song])
-
   return (
     <main>
       {/* Music Header */}
