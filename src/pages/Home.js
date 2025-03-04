@@ -57,10 +57,6 @@ function Home() {
     })()
   })
 
-  useEffect(() => {
-    console.log(songs)
-  }, [songs])
-
   return (
     <AnimatePresence>
       <motion.div
