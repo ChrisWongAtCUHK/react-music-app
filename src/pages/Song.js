@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { songsCollection } from '../includes/firebase'
+import { newSong } from '../features/slices/playerSlice'
 
 function Song() {
   const { id } = useParams()
+  const dispatch = useDispatch()
   const [song, setSong] = useState({})
   const [sortedComments, setSortedComments] = useState([])
 
-  function newSong(e, song) {
-    e.preventDefault()
+  function playSong() {
+    dispatch(newSong({song}))
   }
 
   useEffect(() => {
@@ -40,7 +43,7 @@ function Song() {
         <div className='container mx-auto flex items-center'>
           {/* Play/Pause Button */}
           <button
-            onClick={(e) => newSong(e, song)}
+            onClick={playSong}
             type='button'
             className='z-50 h-24 w-24 text-3xl bg-white text-black rounded-full focus:outline-none'
           >

@@ -1,7 +1,7 @@
-import firebase from 'firebase/app'
-import 'firebase/auth' // auth module
-import 'firebase/firestore' // db package to store data in firestore-database
-import 'firebase/storage'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth' // auth module
+import 'firebase/compat/firestore' // db package to store data in firestore-database
+import 'firebase/compat/storage'
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_KEY, // it's how we connect to firebase
