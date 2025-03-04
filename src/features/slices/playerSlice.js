@@ -29,12 +29,23 @@ const playerSlice = createSlice({
       state.sound.play()
 
       return state
+    },
+    toggleAudio:(state) => {
+      if(!state.sound.playing) {
+        return state
+      }
+      if(state.sound.playing()) {
+        state.sound.pause()
+      } else {
+        state.sound.play()
+      }
+      return state
     }
   },
 })
 
 export const selectPlayer = (state) => state.player
 
-export const { newSong } = playerSlice.actions
+export const { newSong, toggleAudio } = playerSlice.actions
 
 export default playerSlice.reducer
