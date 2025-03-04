@@ -7,6 +7,7 @@ const initialState = {
   seek: '00:00',
   duration: '00:00',
   playerProgress: '0%',
+  playing: false
 }
 
 const playerSlice = createSlice({
@@ -27,6 +28,7 @@ const playerSlice = createSlice({
       });
 
       state.sound.play()
+      state.playing = true
 
       return state
     },
@@ -35,8 +37,10 @@ const playerSlice = createSlice({
         return state
       }
       if(state.sound.playing()) {
+        state.playing = false
         state.sound.pause()
       } else {
+        state.playing = true
         state.sound.play()
       }
       return state

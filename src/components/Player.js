@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectPlayer, toggleAudio } from '../features/slices/playerSlice'
 
@@ -7,10 +7,12 @@ function Player() {
   const player = useSelector(selectPlayer)
   const [playing, setPlaying] = useState(false)
 
-  function togglePlaying() {
-    dispatch(toggleAudio())
-    setPlaying((pre) => !pre)
-  }
+  useEffect(() => {
+    if(player.sound.playing) {
+      setPlaying(() => player.playing)
+    }
+    return
+  }, [player.playing, player.sound.playing])
 
   return (
     <div className='fixed bottom-0 left-0 bg-white px-4 py-4 w-full player-container'>
@@ -27,9 +29,9 @@ function Player() {
         </div>
       ) : null}
        {/* Play/Pause Button */}
-       <button type="button" onClick={togglePlaying}>
+       <button type="button" onClick={() => dispatch(toggleAudio())}>
         <i
-          className={['fa', 'text-gray-500', 'text-xl', playing ? 'fa-play' : '', playing ? '' : 'fa-pause'].join(' ')}
+          className={['fa', 'text-gray-500', 'text-xl', playing ? '' : 'fa-play', playing ? 'fa-pause' : ''].join(' ')}
         ></i>
       </button>
     </div>
