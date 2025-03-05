@@ -105,6 +105,11 @@ function Player() {
         >
           <i className='fas fa-circle'></i>
         </span>
+        {/* Player Progress Bar */}
+        <span
+          className='block h-2 rounded bg-gradient-to-r from-green-500 to-green-400'
+          style={{ width: playState.playerProgress }}
+        ></span>
       </div>
     </div>
   )
