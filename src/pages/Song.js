@@ -8,7 +8,7 @@ function Song() {
   const { id } = useParams()
   const dispatch = useDispatch()
   const [song, setSong] = useState({})
-  const [sortedComments, setSortedComments] = useState([])
+  const [sortedComments,] = useState([])
 
   function playSong() {
     dispatch(newSong({song}))

@@ -79,37 +79,41 @@ function Player() {
           </span>
         </div>
       ) : null}
-      {/* Play/Pause Button */}
-      <button type='button' onClick={() => dispatch(toggleAudio())}>
-        <i
-          className={[
-            'fa',
-            'text-gray-500',
-            'text-xl',
-            playing ? '' : 'fa-play',
-            playing ? 'fa-pause' : '',
-          ].join(' ')}
-        ></i>
-      </button>
-      {/* Current Position */}
-      <div className='player-current-time'>{playState.seek}</div>
-      {/* Scrub Container */}
-      <div
-        onClick={updateSeek}
-        className='w-full h-2 rounded bg-gray-200 relative cursor-pointer'
-      >
-        {/* Player Ball */}
-        <span
-          className='absolute -top-2.5 -ml-2.5 text-gray-800 text-lg'
-          style={{ left: playState.playerProgress }}
+      <div className='flex flex-nowrap gap-4 items-center'>
+        {/* Play/Pause Button */}
+        <button type='button' onClick={() => dispatch(toggleAudio())}>
+          <i
+            className={[
+              'fa',
+              'text-gray-500',
+              'text-xl',
+              playing ? '' : 'fa-play',
+              playing ? 'fa-pause' : '',
+            ].join(' ')}
+          ></i>
+        </button>
+        {/* Current Position */}
+        <div className='player-current-time'>{playState.seek}</div>
+        {/* Scrub Container */}
+        <div
+          onClick={updateSeek}
+          className='w-full h-2 rounded bg-gray-200 relative cursor-pointer'
         >
-          <i className='fas fa-circle'></i>
-        </span>
-        {/* Player Progress Bar */}
-        <span
-          className='block h-2 rounded bg-gradient-to-r from-green-500 to-green-400'
-          style={{ width: playState.playerProgress }}
-        ></span>
+          {/* Player Ball */}
+          <span
+            className='absolute -top-2.5 -ml-2.5 text-gray-800 text-lg'
+            style={{ left: playState.playerProgress }}
+          >
+            <i className='fas fa-circle'></i>
+          </span>
+          {/* Player Progress Bar */}
+          <span
+            className='block h-2 rounded bg-gradient-to-r from-green-500 to-green-400'
+            style={{ width: playState.playerProgress }}
+          ></span>
+        </div>
+        {/* Duration */}
+        <div className='player-duration'>{playState.duration}</div>
       </div>
     </div>
   )
