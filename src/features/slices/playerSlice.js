@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import { Howl } from 'howler'
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
   seek: '00:00',
   duration: '00:00',
   playerProgress: '0%',
-  playing: false
+  playing: false,
 }
 
 const playerSlice = createSlice({
@@ -17,26 +17,26 @@ const playerSlice = createSlice({
     newSong: (state, action) => {
       // prevent multiple audio files play at the same time
       if (state.sound instanceof Howl) {
-        state.sound.unload();
+        state.sound.unload()
       }
 
-      state.current_song = action.payload.song;
+      state.current_song = action.payload.song
 
       state.sound = new Howl({
         src: [action.payload.song.url],
         html5: true,
-      });
+      })
 
       state.sound.play()
       state.playing = true
-
+      
       return state
     },
-    toggleAudio:(state) => {
-      if(!state.sound.playing) {
+    toggleAudio: (state) => {
+      if (!state.sound.playing) {
         return state
       }
-      if(state.sound.playing()) {
+      if (state.sound.playing()) {
         state.playing = false
         state.sound.pause()
       } else {
@@ -44,7 +44,7 @@ const playerSlice = createSlice({
         state.sound.play()
       }
       return state
-    }
+    },
   },
 })
 
