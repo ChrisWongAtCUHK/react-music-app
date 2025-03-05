@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { Howl } from 'howler'
 
 const initialState = {
@@ -29,7 +29,7 @@ const playerSlice = createSlice({
 
       state.sound.play()
       state.playing = true
-      
+
       return state
     },
     toggleAudio: (state) => {

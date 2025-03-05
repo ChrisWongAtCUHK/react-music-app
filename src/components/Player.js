@@ -36,6 +36,22 @@ function Player() {
     }
   }
 
+  function updateSeek(event) {
+    // Update status of the player-timeline-progress based on the player progress timeline selected by user
+    if (!player.sound.playing) {
+      return
+    }
+
+    const { x, width } = event.currentTarget.getBoundingClientRect()
+    // Ex: if Document = 2000, Timeline = 1000 --> clientX = 1000, Distance = 500
+    const clickX = event.clientX - x
+    const percentage = clickX / width
+    const seconds = player.sound.duration() * percentage
+
+    player.sound.seek(seconds)
+    player.sound.once('seek', this.progress) // pause the audio then change the current timeline then play again
+  }
+
   useEffect(() => {
     if (player.sound.playing) {
       setPlaying(() => player.playing)
@@ -46,6 +62,7 @@ function Player() {
     }
 
     return
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player.playing, player.sound, player.sound.playing])
 
   return (
@@ -76,6 +93,19 @@ function Player() {
       </button>
       {/* Current Position */}
       <div className='player-current-time'>{playState.seek}</div>
+      {/* Scrub Container */}
+      <div
+        onClick={updateSeek}
+        className='w-full h-2 rounded bg-gray-200 relative cursor-pointer'
+      >
+        {/* Player Ball */}
+        <span
+          className='absolute -top-2.5 -ml-2.5 text-gray-800 text-lg'
+          style={{ left: playState.playerProgress }}
+        >
+          <i className='fas fa-circle'></i>
+        </span>
+      </div>
     </div>
   )
 }
