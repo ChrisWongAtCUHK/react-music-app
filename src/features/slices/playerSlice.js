@@ -4,9 +4,6 @@ import { Howl } from 'howler'
 const initialState = {
   current_song: {},
   sound: {},
-  seek: '00:00',
-  duration: '00:00',
-  playerProgress: '0%',
   playing: false,
 }
 
