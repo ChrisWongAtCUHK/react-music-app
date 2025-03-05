@@ -59,6 +59,10 @@ function Player() {
       player.sound.on('play', () => {
         requestAnimationFrame(progress)
       })
+
+      player.sound.on('end', () => {
+        setPlaying(() => false)
+      })
     }
 
     return
