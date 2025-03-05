@@ -19,7 +19,7 @@ function Player() {
     playerProgress: '0%',
   })
 
-  function process() {
+  function progress() {
     setPlayState((pre) => {
       return {
         ...pre,
@@ -32,7 +32,7 @@ function Player() {
     })
 
     if (player.sound.playing()) {
-      requestAnimationFrame(process)
+      requestAnimationFrame(progress)
     }
   }
 
@@ -49,7 +49,7 @@ function Player() {
     const seconds = player.sound.duration() * percentage
 
     player.sound.seek(seconds)
-    player.sound.once('seek', this.progress) // pause the audio then change the current timeline then play again
+    player.sound.once('seek', progress) // pause the audio then change the current timeline then play again
   }
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function Player() {
       setPlaying(() => player.playing)
 
       player.sound.on('play', () => {
-        requestAnimationFrame(process)
+        requestAnimationFrame(progress)
       })
     }
 
