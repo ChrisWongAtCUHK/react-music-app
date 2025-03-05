@@ -90,6 +90,7 @@ function Home() {
         <div className='bg-white rounded border border-gray-200 relative flex flex-col'>
           <div className='px-6 pt-6 pb-5 font-bold border-b border-gray-200'>
             <span className='card-title'>Songs</span>
+            <i className="fa fa-headphones-alt text-green-400 text-xl float-right"></i>
           </div>
           {/* Playlist */}
           <ol id='playlist'>
